@@ -1,0 +1,6 @@
+/* GLOBAL */
+@import "./global/global.css";
+/* HOME */
+@import "./home/login.css";
+/* JOGO */
+@import "./jogo/game.css";
