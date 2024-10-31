@@ -11,13 +11,18 @@ const personagens = [
   "meeseeks",
   "scroopy",
 ];
+const spanPlayer = document.querySelector(".player");
+const spanTime = document.querySelector(".timer");
 let primeiraCarta = "";
 let segundaCarta = "";
 
 function checkEndGame() {
   const cartasDesabilitidas = document.querySelectorAll(".disabled-card");
   if (cartasDesabilitidas.length === 20) {
-    alert("Parabens, você ganhou!");
+    clearInterval(this.loop);
+    alert(
+      `Parabéns,${spanPlayer.innerHTML}. O tempo total foi de: ${spanTime.innerHTML}.`
+    );
   }
 }
 
@@ -89,4 +94,15 @@ function carregarJogo() {
   });
 }
 
-carregarJogo();
+function time() {
+  this.loop = setInterval(() => {
+    const tempoAtual = +spanTime.innerHTML;
+    spanTime.innerHTML = tempoAtual + 1;
+  }, 1000);
+}
+
+window.onload = () => {
+  spanPlayer.innerHTML = localStorage.getItem("Usuário");
+  time();
+  carregarJogo();
+};
